@@ -1,0 +1,56 @@
+.head{
+	position: relative;
+	width: 100%;
+}
+
+
+/*nav  start*/
+.head-nav{
+	position: fixed;
+	width:100%;
+	background: rgba(0,0,0,0.4);
+}
+
+.head-nav .nav-ul{
+	overflow: hidden;
+	width: 610px;
+	list-style: none;
+	color:#fff;
+	font-size: 0.8rem;
+	margin-left: 20px;
+}
+.head-nav .nav-ul .nva-ico{
+	font-size: 0.65rem;
+}
+.head-nav .nav-ul a {
+	text-decoration: none;
+	color: #fff;
+	font-size: 0.7rem;
+	margin-left: 5%;
+}
+.head-nav .nav-ul li{
+	float: left;
+	width: 80px;
+	padding: 1%;
+	margin-left:4% ;
+}
+/*nav  end*/
+
+/* head background  S */
+.head .hean-background{
+	top: 0px; left:0px;
+	z-index: -1;
+	width: 100%;
+	height:700px;
+}
+.head .hean-background .bg-desc{
+	position: absolute;
+	width: 100%; height: 20%;
+	top: 0; left: 0; right: 0; bottom: 0;
+	margin:auto;
+	color: white;
+	text-align: center;
+	font-size: 1.5rem;
+	
+}
+/* head background  E */

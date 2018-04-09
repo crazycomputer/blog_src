@@ -1,0 +1,102 @@
+		@media only screen and (max-width: 840px){
+			
+			/* head background  S */
+			.head .hean-background{
+				height:500px;
+			}
+			/* head background  E */
+		}
+	 
+		@media only screen and (max-width: 320px) {
+    		html {font-size: 14px;}
+			.head .hean-background{
+				height:240px;
+			}    		
+		}
+ 
+		@media only screen and (min-width: 320px) and (max-width: 360px) {
+		    html {font-size: 16px;}
+			.head .hean-background{
+				height:280px;
+			}		    
+		}
+		 
+		@media only screen and (min-width: 360px) and (max-width: 400px) {
+		    html {font-size: 18px;}
+			.head .hean-background{
+				height:300px;
+			}		
+		}
+		 
+		@media only screen and (min-width: 400px) and (max-width: 440px) {
+		    html {font-size: 20px;}
+			.head .hean-background{
+				height:320px;
+			}		    
+		}
+		 
+		@media only screen and (min-width: 440px) and (max-width: 500px) {
+		    html {font-size: 22px;}
+			.head .hean-background{
+				height:390px;
+			}		    
+		}
+		 
+		@media only screen and (min-width: 500px) and (max-width: 640px) {
+		    html {font-size: 26px;}
+			.head .hean-background{
+				height:430px;
+			}		
+		}
+		@media only screen and (min-width: 640px){
+			html {font-size: 28px;}
+		}
+		
+		@media only screen and (max-width: 639px){
+			.head .head-nav .nav-ul{
+				width: 100%;
+				margin-left: 0px;
+			}			
+			.head .head-nav .nav-ul li{
+				width: 15%;
+				padding: 1%;
+				margin-left:3%;
+			}	
+			
+			.loading_all .loading-box{
+				height: 200px; width: 100%; 
+			}	
+						
+		}
+		
+		@media only screen and (max-width: 1070px){
+			.main{width:100%;margin: 4% 0px;}			
+
+			.main .content-all{
+				width: 100%;
+				padding: 5%;
+				margin:0 auto;
+			}
+			.main .content-all .con{
+				width: 92%;
+				margin:0;
+				margin-bottom:20px;
+			}
+			.main .right-model{
+				float:none;
+				clear: both;
+				width: 92%;
+				margin:0 auto;
+			}			
+		}
+
+
+		/*@media screen and (max-width: 1000px){*/
+			
+			/* head background  S */
+			/*.head .hean-background{
+				height:582px;
+			}*/
+			/* head background  E */
+		/*}*/ 		
+		

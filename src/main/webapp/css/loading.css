@@ -1,0 +1,13 @@
+.loading_all{        
+	position:fixed;  
+	width:100%;  
+    height:100%;  
+    z-index:999;  
+    background-color:#fff ;
+	}
+	
+.loading_all .loading-box{
+	position:absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; 
+	margin: auto; 
+	height: 420px; width: 500px;
+}

@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'iconfont'; 
+  src: url('http://at.alicdn.com/t/font_413721_yocrautfywl5l8fr.eot');
+  src: url('http://at.alicdn.com/t/font_413721_yocrautfywl5l8fr.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_413721_yocrautfywl5l8fr.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_413721_yocrautfywl5l8fr.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_413721_yocrautfywl5l8fr.svg#iconfont') format('svg');
+}
+
+
+.iconfont{
+	  font-family: "iconfont";
+	  font-size:1rem;
+	  font-style:normal;
+}
+
+body{
+	font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE软雅黑,Arial,sans-serif;
+}

@@ -1,0 +1,130 @@
+			@media screen and (max-width: 320px) {
+	    
+	    	html {font-size: 14px;}
+	    
+	    		.info .portralt{
+					width:40px;
+					height:40px;
+				}
+				
+				.info{
+					width:100%;
+					height:300px;
+				}				
+			}
+	 
+			@media screen and (min-width: 320px) and (max-width: 360px) {
+			    html {font-size: 16px;}
+				.info .portralt{
+					width:50px;
+					height:50px;
+				}
+				
+				.info{
+					width:100%;
+					height:300px;
+				}
+			}
+			 
+			@media screen and (min-width: 360px) and (max-width: 400px) {
+			    html {font-size: 18px;}
+					.info .portralt{
+					width:60px;
+					height:60px;
+				}
+				
+				.info{
+					width:100%;
+					height:300px;
+				}
+
+				.info .info-but a{
+					width: 50px;
+				}				
+			}
+			 
+			@media screen and (min-width: 400px) and (max-width: 440px) {
+			    html {font-size: 20px;}
+			  .info .portralt{
+					width:70px;
+					height:70px;
+				}
+				
+				.info{
+					width:100%;
+					height:300px;
+				}
+				
+
+				.info .info-but a{
+					width: 60px;
+				}					
+			}
+			 
+			@media screen and (min-width: 440px) and (max-width: 500px) {
+			    html {font-size: 22px;}
+			    .info .portralt{
+					width:80px;
+					height:80px;
+				}
+				
+				.info{
+					width:100%;
+					height:300px;
+				}	
+				
+				.info .info-but a{
+					width: 70px;
+				}	
+						
+			
+			}
+			 
+			@media screen and (min-width: 500px) and (max-width: 640px) {
+			    html {font-size: 26px;}
+			  .info .portralt{
+					width:90px;
+					height:90px;
+				}
+				
+				.info .info-but a{
+					width: 80px;
+				}			
+				
+				
+			}
+			
+			
+			
+			@media screen and (min-width: 640px){
+				html {font-size: 28px;}
+
+			}
+			
+			@media screen and (max-width: 500px){
+				
+				/*loading*/
+				.loading_all .loading-box{
+					height: 200px; width: 100%; 
+				}
+			}
+			
+			
+			@media screen and (max-width: 982px){
+			.info .info-but{
+				width:100%;
+			}
+			
+			
+				.info .info-but .github{
+						float: none; display:block;
+						margin: 3% auto;
+				}
+				
+				.info .info-but .blog{
+						float: none; display:block;
+						margin: 3% auto;
+				}
+				.info .info-but .a2{float: none;}	
+			}
+		

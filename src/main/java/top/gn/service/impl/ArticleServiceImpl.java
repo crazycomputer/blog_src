@@ -7,12 +7,19 @@
  */  
 package top.gn.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import top.gn.dao.ArticleInfoDAO;
 import top.gn.dao.ArticlerDAO;
 import top.gn.dao.impl.ArticleDAOImpl;
 import top.gn.entity.Article;
@@ -31,8 +38,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 	private ArticlerDAO articleDAOImpl;
 	
+	private ArticleInfoDAO articleInfoDAOImpl;
+	
 	public ArticleServiceImpl() {
 		System.out.println("ArticleServiceImpl......");
+	}
+	
+	@Autowired
+	public void setArticleInfoDAOImpl(ArticleInfoDAO articleInfoDAOImpl) {
+		this.articleInfoDAOImpl = articleInfoDAOImpl;
 	}
 	
 	@Autowired
@@ -111,16 +125,71 @@ public class ArticleServiceImpl implements ArticleService {
 			System.err.println(this+" Method:getArticleCount() error");
 			e.printStackTrace();
 		}
-		
 		return 0L;
 	}
 
+	
 	@Override
 	public long addArticle(Article article) {
-		return 0;
+		
+		try {
+			long id =  this.articleDAOImpl.addArticle(article);
+					   this.articleInfoDAOImpl.addArticleInfo((int)id);
+			return id;
+		} catch (SQLException e) {
+			System.err.println(this.getClass()+" #addArticle(Article article)");
+			e.printStackTrace();
+		}
+		
+		return -1L;
 	}
-
 	
+	@Override
+	public int articleSubmit(Article article , String bgPath) {
+		try {
+			return this.articleDAOImpl.articleSubmit(article, bgPath);
+		} catch (SQLException e) {
+			System.err.println("ArticleServiceImpl.articleSubmit(Article article , String bgPath)");
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	
+	
+	@Override
+	public String upload(HttpServletRequest request , MultipartFile pototitle) {
+		
+		if(pototitle != null && !pototitle.isEmpty()) {
+			System.out.println("id:"+pototitle.getName());
+			System.out.println("type:"+ pototitle.getContentType());
+			String path = request.getSession().getServletContext().getRealPath("poto");;
+			
+			String potoName = pototitle.getOriginalFilename();
+			
+			String newFileName = UUID.randomUUID() + potoName;
+			
+			File newFile = new File(path , newFileName);
+			
+			System.out.println(newFile.getParentFile().exists());
+			if(!newFile.getParentFile().exists()) {
+				newFile.getParentFile().mkdirs();
+			}
+			
+			File upFile = new File(path + File.separator + "type_mg" + File.separator + newFileName);
+			System.out.println(path);
+			try {
+				pototitle.transferTo(upFile);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("ArticleServiceImpl.upload()");
+				e.printStackTrace();
+			}
+			
+			System.out.println(potoName);
+			return newFileName;
+		}
+		return null;
+	}
 	
 	
 	

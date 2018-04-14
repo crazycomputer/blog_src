@@ -49,9 +49,9 @@ public class ManagerDAOImpl extends GenericDAOImpl<Manager> implements ManagerDA
 	}
 
 	@Override
-	public Manager getManagerByKey(Manager manager) throws SQLException  {
+	public Manager getManagerByKey(String account) throws SQLException  {
 		String sql = " SELECT id,account,`hash`,`level`,nickname FROM manager WHERE account = ? ";
-		return doGet(sql, rowMapper, manager.getAccount());
+		return doGet(sql, rowMapper, account);
 	}
 
 	@Override

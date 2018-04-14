@@ -10,6 +10,10 @@ package top.gn.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import top.gn.entity.Article;
 import top.gn.page.Page;
 
@@ -101,5 +105,21 @@ public interface ArticleService {
 	 * @throws
 	 */
 	long addArticle(Article article);
+
+	/**
+	 * 文章封面的文件上传方法
+	 * @param request
+	 * @param pototitle
+	 * @return 返回的是文件的新名称+后缀
+	 */
+	String upload(HttpServletRequest request, MultipartFile pototitle);
+
+	/**
+	 * 用于将最新的数据 , 保存到数据库当中  ,可以使用其实现自动保存 , 和 点击提交后的后一次更新
+	 * @param aritcle
+	 * @param bgPath
+	 * @return
+	 */
+	int articleSubmit(Article aritcle, String bgPath);
 	
 }

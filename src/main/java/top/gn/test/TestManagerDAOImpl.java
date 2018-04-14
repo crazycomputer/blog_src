@@ -55,9 +55,9 @@ public class TestManagerDAOImpl {
 	
 	@Test
 	public void testGetBykey() throws SQLException {
-		Manager manager = new Manager();
-		manager.setAccount("10000");
-		System.out.println(managerDAOImpl.getManagerByKey(manager));
+//		Manager manager = new Manager();
+//		manager.setAccount("10000");
+		System.out.println(managerDAOImpl.getManagerByKey("10000"));
 	}
 	
 	/*---------删除------------*/
@@ -69,9 +69,7 @@ public class TestManagerDAOImpl {
 	/*-------更新 ---------*/
 	@Test
 	public void testNewHash() throws SQLException {
-		Manager manager = new Manager();
-		manager.setAccount("123");
-		Manager user =  managerDAOImpl.getManagerByKey(manager);
+		Manager user =  managerDAOImpl.getManagerByKey("123456");
 		if(user == null) {
 			System.out.println("找不到账户信息! ");
 			return ;

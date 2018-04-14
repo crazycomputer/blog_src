@@ -9,9 +9,9 @@ package top.gn.dao.impl;
 
 import java.sql.SQLException;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import top.gn.dao.ArticleInfoDAO;
 import top.gn.entity.ArticleInfo;
@@ -30,9 +30,9 @@ public class ArticleInfoDAOImpl extends GenericDAOImpl<ArticleInfo> implements A
 	RowMapper<ArticleInfo> rowMapper = new BeanPropertyRowMapper<ArticleInfo>(ArticleInfo.class);
 	
 	@Override
-	public int addArticleInfo(ArticleInfo articleInfo) throws SQLException {
+	public int addArticleInfo(int articleId) throws SQLException {
 		String sql = " INSERT INTO article_info(article_id) VALUE(?)  ";
-		return doUpdate(sql, rowMapper, articleInfo.getArticleId());
+		return doUpdate(sql, articleId);
 	}
 
 	@Override

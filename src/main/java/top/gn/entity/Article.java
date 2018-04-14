@@ -42,7 +42,7 @@ public class Article {
 	
 	private Date createDate;
 	
-	private Date lastModifyDate;
+	private int articleType;
 	
 	private int browse;
 	
@@ -56,7 +56,7 @@ public class Article {
 	
 
 	public Article(Integer id, String author, String title, String subtitleMd, String subtitleHTML, String type,
-			String contentHTML, String contentMd, Date lastModifyDate) {
+			String contentHTML, String contentMd, int articleType) {
 		super();
 		this.id = id;
 		this.author = author;
@@ -66,14 +66,14 @@ public class Article {
 		this.type = type;
 		this.contentHTML = contentHTML;
 		this.contentMd = contentMd;
-		this.lastModifyDate = lastModifyDate;
+		this.articleType = articleType;
 	}
 
 
 
 
 	public Article(Integer id, String author, String title, String subtitleMd, String subtitleHTML, String type,
-			String parentType, String contentHTML, String contentMd, Date lastModifyDate, int browse,
+			String parentType, String contentHTML, String contentMd, int articleType, int browse,
 			int like) {
 		super();
 		this.author = author;
@@ -84,7 +84,7 @@ public class Article {
 		this.parentType = parentType;
 		this.contentHTML = contentHTML;
 		this.contentMd = contentMd;
-		this.lastModifyDate = lastModifyDate;
+		this.articleType = articleType;
 		this.browse = browse;
 		this.like = like;
 	}
@@ -184,12 +184,12 @@ public class Article {
 		this.createDate = createDate;
 	}
 
-	public Date getLastModifyDate() {
-		return lastModifyDate;
+	public int getArticleType() {
+		return articleType;
 	}
 
-	public void setLastModifyDate(Date lastModifyDate) {
-		this.lastModifyDate = lastModifyDate;
+	public void setArticleType(int articleType) {
+		this.articleType = articleType;
 	}
 
 	
@@ -210,8 +210,8 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", author=" + author + ", title=" + title + ", subtitleMd=" + subtitleMd
 				+ ", subtitleHTML=" + subtitleHTML + ", type=" + type + ", parentType=" + parentType + ", contentHTML="
-				+ contentHTML + ", contentMd=" + contentMd + ", createDate=" + createDate + ", lastModifyDate="
-				+ lastModifyDate + ", browse=" + browse + ", like=" + like + "]";
+				+ contentHTML + ", contentMd=" + contentMd + ", createDate=" + createDate + ", articleType="
+				+ articleType + ", browse=" + browse + ", like=" + like + "]";
 	}
 
 

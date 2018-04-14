@@ -51,7 +51,7 @@ public interface ManagerDAO {
 	 * @return 返回查询到的  Manager对象 ， 若没有查询到则为null；
 	 * @throws
 	 */
-	public Manager getManagerByKey(Manager manager) throws SQLException ;
+	public Manager getManagerByKey(String account) throws SQLException ;
 	
 	/**
 	 * 

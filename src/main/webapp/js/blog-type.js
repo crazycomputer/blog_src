@@ -16,7 +16,6 @@
 		var center = (browseWidth - (count * articlesW)  + 50) / 2;
 		
 		function type_articleallWidth(){
-			console.log(browseWidth);
 			if(browseWidth < 650) {
 				$(".type_articleall").css({"width":"90%",
 											"margin":"20px auto 0px",
@@ -47,7 +46,7 @@
 		window.onload = function() {
 			$(".markdown-body").attr("style","padding:0px");
 			autoHeight();
-			
+			scrollHeight();
 			if(count <= 1){
 				articles.css("position","initial");
 				return;
@@ -79,10 +78,6 @@
 			var arrH = [];
 			for(var i=0; i< articles.length; i++){
 				var j = i%count;
-				console.log(count);
-				console.log(j);
-				
-				console.log("------------");
 				if(arrH.length == count) {
 					var min = findMin(arrH); //找到arrH当中最小的
 					articles[i].style.left = center + min * articlesW + "px";
@@ -105,6 +100,95 @@
 			}
 			return m;
 		}
+		
+		/* 监听浏览器滚动条高度 , S */
+		function scrollHeight() {
+			/*var flagDown = true;
+			var flagUp = true;
+			
+			$(window).scroll(function(){
+				var before = $(document).scrollTop(); 
+				
+				$(window).scroll(function(){
+					var after = $(document).scrollTop();
+					//判断添加下滑标记  true : 表示盒子处于上划隐藏状态 , 可以下滑   而  false: 表示盒子处于下滑状态 , 不能在执行if当中的代码
+					if(before > after) {
+						$(".type_head").slideDown(100);						
+						before = after;
+						console.log(before+ "--before" + "上");
+					}
+					
+					if(before < after){  //浏览器滚轮 下划 , 盒子向上划 隐藏
+						$(".type_head").slideUp(100);
+						before = after;		
+						console.log(before+ "--before" + "下");
+					}
+					//console.log(flagDown +"--(before > after): "+(before > after));
+					//console.log(flagUp +"--(before < after): "+(before < after));
+				});
+				
+			});*/
+			
+			
+				   var upflag=1;
+				   var  downflag= 1;
+			    //scroll滑动,上滑和下滑只执行一次！
+				scrollDirect(function (direction) {
+				        if (direction == "down") {
+				            if (downflag) {
+				                $(".footer_wrap").slideUp(200);
+				                downflag = 0;
+				               upflag = 1;
+				               $(".type_head").slideUp(100);
+				               	
+				            }
+				        }
+				        if (direction == "up") {
+				            if (upflag) {
+				                $(".footer_wrap").slideDown(200);
+				                downflag = 1;
+				                upflag = 0;
+				                $(".type_head").slideDown(100);
+				            }
+				        }
+				 });		
+		}
+		
+		function scrollDirect(fn){
+		    var beforeScrollTop = document.body.scrollTop;
+		    fn = fn || function () {
+		    };
+		    window.addEventListener("scroll", function (event) {
+		        event = event || window.event;
+
+		        var afterScrollTop = document.body.scrollTop;
+		        delta = afterScrollTop - beforeScrollTop;
+		        beforeScrollTop = afterScrollTop;
+
+		        var scrollTop = $(this).scrollTop();
+		        var scrollHeight = $(document).height();
+		        var windowHeight = $(this).height();
+		        if (scrollTop + windowHeight > scrollHeight - 10) {  //滚动到底部执行事件
+		            fn('up');
+		            return;
+		        }
+		        if (afterScrollTop < 10 || afterScrollTop > $(document.body).height - 10) {
+		            fn('up');
+		        } else {
+		            if (Math.abs(delta) < 10) {
+		                return false;
+		            }
+		            fn(delta > 0 ? "down" : "up");
+		        }
+		    }, false);			
+			
+		}
+		
+		
+		
+		
+		
+		/* 监听浏览器滚动条高度 , E */
 		
 		function create() {
 		}

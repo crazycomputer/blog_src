@@ -7,7 +7,7 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-
+	<!-- 错误  页面映射  S -->
 	<error-page>
 		<error-code>500</error-code>
 		<location>/WEB-INF/error/error_500.jsp</location>
@@ -21,13 +21,35 @@
 		<error-code>400</error-code>
 		<location>/WEB-INF/error/error_404.jsp</location>
 	</error-page>
-
+	<!-- 错误  页面映射  E -->
+	
+	<!-- 配置session的失效时间  S -->
+	<session-config>
+		<!-- 30分钟 -->
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	
 	<filter>
 		<filter-name>encode</filter-name>
 		<filter-class>top.gn.filter.EncodeFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>encode</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>verify</filter-name>
+		<filter-class>top.gn.filter.VertiyLogin</filter-class>
+		
+		<init-param>
+			<param-name>keyworkd</param-name>
+			<param-value>/manager-article/show-form,/author/author-data</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>verify</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
@@ -45,6 +67,7 @@
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
+	
 
 </web-app>

@@ -88,7 +88,7 @@
 			.main .con-box .con-desc{
 				width:100%;
 				padding:2% 0px;
-				font-size: 0.8rem;
+				font-size: 0.7rem;
 			}
 
 			.main .con-box .con-footer{

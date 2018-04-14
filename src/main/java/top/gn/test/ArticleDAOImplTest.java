@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import top.gn.dao.impl.ArticleDAOImpl;
+import top.gn.dao.impl.ArticleInfoDAOImpl;
 import top.gn.entity.Article;
 import top.gn.page.Page;
 
@@ -30,9 +31,11 @@ public class ArticleDAOImplTest {
 	
 	ApplicationContext ac;
 	ArticleDAOImpl articleDAOImpl ; 
+	ArticleInfoDAOImpl articleInfoDAOImpl;
 	{
 		this.ac = new ClassPathXmlApplicationContext("springConfig.xml");
 		articleDAOImpl = this.ac.getBean(ArticleDAOImpl.class);
+		articleInfoDAOImpl = this.ac.getBean(ArticleInfoDAOImpl.class);
 	}
 
 	
@@ -78,8 +81,8 @@ public class ArticleDAOImplTest {
 		article.setContentHTML("冲突了听HTMl");
 		article.setContentMd("```content MD  test  ```");
 		
-		long id = articleDAOImpl.addArticle(article);
-		System.out.println(id);
+		//long id = articleDAOImpl.addArticle(article);
+		//System.out.println(id);
 	}
 	
 	@Test
@@ -90,6 +93,10 @@ public class ArticleDAOImplTest {
 	@Test
 	public void testGetArticleCount() throws SQLException {
 		System.out.println(articleDAOImpl.getArticleCount());
+	}
+	@Test
+	public void testArticleInfoDAOImpl() throws SQLException {
+		System.out.println(articleInfoDAOImpl.addArticleInfo(15));
 	}
 	
 

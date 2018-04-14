@@ -30,7 +30,6 @@
 				width:94%;
 				margin: 4% auto;
 				overflow: hidden;
-				
 			}
 			.main .content-all{
 				float: left;
@@ -38,6 +37,8 @@
 				height:100%;
 				margin-left: 6%;
 				padding: 1%;
+				background: #fff;
+				border-radius: 8px;
 			}
 			.alert{
 				font-size:20px;
@@ -49,9 +50,11 @@
 		<style type="text/css">
 			@media only screen and (max-width: 1070px){
 					.main .content-all {
+						float:none;
 					    width: 87%;
-					    padding: 4%;
-					    margin: 0 auto;
+					    padding: 2.3%;
+					    margin: 0 auto 20px;
+					    background:#fff;
 					}
 				}
 		</style>
@@ -81,4 +84,7 @@
 	
 	<script src="js/jquery2.0.min.js"></script>
 	<script type="text/javascript" src="js/loading.js"></script>
+	<script type="text/javascript">
+		$(".markdown-body").attr("style","padding:0px");
+	</script>
 </html>

@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="css/editormd.preview.min.css">
 <link rel="stylesheet" type="text/css" href="css/editormd-2.min.css">
 <link rel="stylesheet" href="css/ioc.css" />
+<link rel="stylesheet" type="text/css" href="./editor/layui/css/layui.css">
 <style type="text/css">
 			/* 类型头部: S */
 			.type_head{
@@ -90,6 +91,7 @@
 			#main-box{
 				position: absolute;
 				top:260px;
+				left: 0;
 				width:100%;
 				background:#f4f4f4;
 			}
@@ -166,11 +168,26 @@
 			}
 			/* 文章  E */
 			
-			@media only screen and (max-width: 400px){
+			@media only screen and (max-width: 450px){
 			    html {font-size: 16px;}	
 			    .type_articleall img{
 					width:100%;
 			   }
+			.level {
+				margin: 8px auto;
+			}
+			.level a::before{
+			   border-width: 9px 8px 12px 0;
+			}
+			.level a{
+			    height: 20px;
+			    line-height: 20px;
+			    font-size: 12px;
+			}
+			.level a::after{
+			    top: 9px;
+			}
+			   
 			}
 			@media only screen and (min-width: 640px){
 				 html {font-size: 18px;}
@@ -179,8 +196,6 @@
 			   .type_articleall img{
 					margin:0 auto;	
 			   }
-
-			
 				.type_article{
 					width:90%;
 					padding:10px;
@@ -188,10 +203,6 @@
 				}
 			}			
 		</style>
-		
-	<!--  
-	<link rel="stylesheet" href="css/model_type.css" />
-	-->
 	</head>
 	<body style="background:#f4f4f4;">
 		<header class="type_head">
@@ -214,8 +225,10 @@
 		<div id="main-box">
 			<section class="main-box-articleList">
 				<c:forEach items="${requestScope.blogData.articlesList}" var="article">
-					<div class="type_articleall">
-						<img alt="" src="http://boyhu-1.oss-cn-beijing.aliyuncs.com/18-3-27/81335423.jpg">
+					<div class="type_articleall layui-anim layui-anim-fadein">
+						<c:if test="${not empty article.bgPath}">
+							<img alt="" src="./poto/type_mg/${article.bgPath}">
+						</c:if>
 						<div class="type_article">
 							<h3 class="type_article_title"><a href="./article/article-show/${article.id}">${article.title}</a></h3>
 							<div class="editormd-preview-theme-dark">

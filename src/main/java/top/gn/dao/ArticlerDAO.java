@@ -85,6 +85,18 @@ public interface ArticlerDAO {
 	 */
 	Article getArticleById(Integer id) throws SQLException ;
 	
+	/* ------ 获取可编辑部分 ,  -------- */
+	/**
+	 * @throws SQLException 
+	 * 获取文章 需要编辑的markdown文本 
+	 * @Title: getArticleEditorMd  
+	 * @Description: 获取文章 需要编辑  的相关属性
+	 * @param id
+	 * @return
+	 * @throws
+	 */
+	Article getArticleEditorMd(int id) throws SQLException;
+	
 	
 	/**
 	 * 
@@ -96,21 +108,41 @@ public interface ArticlerDAO {
 	 */
 	long getArticleCount() throws SQLException ;
 	
+	
+	
 	/*------添加------*/
 	/**
-	 * 
-	 * @Title: addArticle
+	 * 发布文章时添加一条记录 , 用于给自动保存提供服务  , 返回插入的  id  , 可以让ajax拿着id  执行自动保存的update操作
+ 	 * @Title: addArticle
 	 * @Description: 添加一篇文章  
 	 * @param article
 	 * @return 添加成功返回true , 失败 false
 	 * @throws
 	 */
 	long addArticle(Article article) throws SQLException;
+
+	/**
+	 * 文章在编辑时期 , 为了防止意外发送, 会自动的进行  30秒保存一次 , 该保存是一个update操作 , 所以文章的insert操作在该方法之前执行
+	 * @param article
+	 * @param bgPath
+	 * @return
+	 * @throws SQLException
+	 */
+	int articleSubmit(Article article, String bgPath) throws SQLException;
+
+	
 	
 	/*------修改 ------*/
-	
-	int updateEditorArticle();
-	
+
+
+	/*------ 删除  -------*/
+	/**
+	 * 根据 文章的 id 删除一个文章 , 此方法同时需要配合 articleInfo当中的   deleteArticleInfoByArticleId()方法执行 , 先删除对应的 article_info  在删除其文章  
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	int articleRemoveById(int id) throws SQLException;
 	
 
 	

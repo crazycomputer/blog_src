@@ -26,7 +26,7 @@ public interface ArticleInfoDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	int addArticleInfo(ArticleInfo articleInfo) throws SQLException;
+	int addArticleInfo(int articleId) throws SQLException;
 
 	/**
 	 * @Title: deleteArticleInfo  

@@ -29,7 +29,7 @@ import top.gn.service.ParentTypeService;
 
 /**  
  * @ClassName: ArticleHandler  
- * @Description: 处理 操作文章的相关 请求 , 发布文章 , 编辑 , 删除文章
+ * @Description: 处理 操作文章展示的相关 请求 , 
  * @author BoyHu
  * @date 1 Apr 2018
  */
@@ -179,9 +179,6 @@ public class ArticleHandler {
 		map.put("blogData", blogData);
 		return "/blog_type";
 	}
-	
-	
-	
 	
 	
 	

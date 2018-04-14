@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import top.gn.dao.ArticlerDAO;
 import top.gn.entity.Article;
+import top.gn.entity.Manager;
 import top.gn.page.Page;
 
 /**
@@ -34,13 +35,7 @@ public class ArticleDAOImpl extends GenericDAOImpl<Article> implements ArticlerD
 
 	RowMapper<Article> rowMapper = new BeanPropertyRowMapper<Article>(Article.class);
 
-	/*
-	 * <p>Title: getAll</p> <p>Description: 查询所有的文章 </p>
-	 * 
-	 * @return
-	 * 
-	 * @see top.gn.dao.ArticlerDAO#getAll()
-	 */
+
 	@Override
 	public List<Article> getArticleAll() throws SQLException {
 		String sql = " SELECT article.id,author,title, subtitle_html AS subtitleHTML , create_date AS createDate , type , parent_type AS parentType , article_info.browse , article_info.`like` FROM article,article_info WHERE article.id=article_info.article_id ORDER BY id DESC  LIMIT 2,3 ";
@@ -87,9 +82,23 @@ public class ArticleDAOImpl extends GenericDAOImpl<Article> implements ArticlerD
 	
 	@Override
 	public Article getArticleEditorMd(int id) throws SQLException {
-		String sql = " SELECT article.id,author,title, subtitle_html AS subtitleHTML , content_html AS contentHTML , content_md as contentMd , create_date AS createDate , type , parent_type AS parentType , article_info.browse , article_info.`like` FROM article,article_info WHERE article.id=article_info.article_id AND article.id = ? ";
+		String sql = " SELECT article.id,author,title, subtitle_html AS subtitleHTML , content_md as contentMd , create_date AS createDate , type , parent_type AS parentType , bg_path as bgPath FROM article,article_info WHERE article.id = article_info.article_id AND article.id = ? ";
 		return doGet(sql, rowMapper, id);
 	}
+	
+	@Override
+	public List<Article> getArticleByArthor(Manager manager) throws SQLException {
+		String sql = null;
+		if(manager.getLevel() == 2) {
+			sql = " SELECT article.id,author,title, subtitle_html AS subtitleHTML , create_date AS createDate , type , parent_type AS parentType , article_type as articleType,browse FROM article,article_info WHERE article.id = article_info.article_id  ORDER BY id DESC ";
+			return doGetAll(sql, rowMapper);
+		}else {
+			sql = " SELECT article.id,author,title, subtitle_html AS subtitleHTML , create_date AS createDate , type , parent_type AS parentType , article_type as articleType,browse FROM article,article_info WHERE article.id = article_info.article_id AND author = ? ORDER BY id DESC ";
+			return doGetAll(sql, rowMapper, manager.getNickname());
+		}
+	}
+	
+	
 
 	/*-------- 添  加 ---------*/
 	

@@ -7,10 +7,10 @@
  */  
 package top.gn.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -121,5 +121,20 @@ public interface ArticleService {
 	 * @return
 	 */
 	int articleSubmit(Article aritcle, String bgPath);
+
+	
+	/**
+	 * 用于安照用户查询文章 , 
+	 * @param managerobj 用户的对象
+	 * @return
+	 */
+	List<Article> getArticleByAuthor(Object managerobj);
+
+	/**
+	 * 获取文章进行编辑 和 表单的回显
+	 * @param id
+	 * @return
+	 */
+	Article getArticleEditor(int id);
 	
 }

@@ -211,7 +211,7 @@ public class Article {
 		return "Article [id=" + id + ", author=" + author + ", title=" + title + ", subtitleMd=" + subtitleMd
 				+ ", subtitleHTML=" + subtitleHTML + ", type=" + type + ", parentType=" + parentType + ", contentHTML="
 				+ contentHTML + ", contentMd=" + contentMd + ", createDate=" + createDate + ", articleType="
-				+ articleType + ", browse=" + browse + ", like=" + like + "]";
+				+ articleType + ", browse=" + browse + "bgPath=" + this.bgPath +  "]";
 	}
 
 

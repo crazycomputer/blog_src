@@ -29,6 +29,10 @@
 		.layui-form .editormd{
 			 margin-left: 107px;
 			 z-index: 1;
+			 
+		}
+		.layui-form .editormd li{
+			list-style: square;
 		}
 		.layui-form .upload-box{
 		    display: inline-block;
@@ -58,8 +62,9 @@
 					<h3 class="page-title">发布文章</h3>
 					
 					<form:form enctype="multipart/form-data" action="../manager-article/update-commit-article" method="post" class="layui-form" modelAttribute="article">
-						  <input id="addarcle-id" type="hidden" name="id" value="">
+						  <input id="addarcle-id" type="hidden" name="id" value="${param._i}">
 						  <input id="addarcle-author" type="hidden" name="author" value="${sessionScope['now-author'].nickname}">
+						  <form:hidden path="bgPath"/>
 						  <div class="layui-form-item">
 						    <label class="layui-form-label">文本标题</label>
 						    <div class="layui-input-block">
@@ -91,7 +96,7 @@
 						  </div>			  
 						  
 					      <div class="editormd" id="test-editormd">
-						      <textarea class="editormd-markdown-textarea" name="contentMd" id="addartle-contentmd" ></textarea>
+						      <form:textarea class="editormd-markdown-textarea" path="contentMd" id="addartle-contentmd" ></form:textarea>
 						      <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 name=test-editormd-html-code-->
 							  <textarea id="addartle-contenthtml" name="contentHTML" style="display:none" ></textarea>
 						   </div>
@@ -211,7 +216,10 @@ function insertArticle() {
 	});
 }
 
-setTimeout(insertArticle , 10000);
+if("${param.flag}" == "insert"){
+	setTimeout(insertArticle , 10000);
+}
+
 
 
 

@@ -122,13 +122,13 @@
 		}
 		
 		function send(userName , pass) {
-			$.post("../author/laici-go" ,{account:userName,hash:pass} , function(resultStr){
+			$.post("<%=path%>author/laici-go" ,{account:userName,hash:pass} , function(resultStr){
 				console.log(resultStr);
 				layer.msg(resultStr);
 				
 				if(resultStr == "登录成功"){
 					setTimeout(function(){
-						window.location = "../author/author-data";
+						window.location = "<%=path%>author/author-data";
 					} , 1000);
 				}
 				

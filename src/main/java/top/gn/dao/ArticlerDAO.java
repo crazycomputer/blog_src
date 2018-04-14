@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import top.gn.entity.Article;
+import top.gn.entity.Manager;
 import top.gn.page.Page;
 
 /**  
@@ -97,6 +98,17 @@ public interface ArticlerDAO {
 	 */
 	Article getArticleEditorMd(int id) throws SQLException;
 	
+	/**
+	 * 查询文章, 根据当前登录的用户名称
+	 * @param manager  管理员对象
+	 * @return 放回查询结果集
+	 * @throws SQLException 
+	 */
+	List<Article> getArticleByArthor(Manager manager) throws SQLException;
+	
+
+	
+	
 	
 	/**
 	 * 
@@ -143,7 +155,6 @@ public interface ArticlerDAO {
 	 * @throws SQLException
 	 */
 	int articleRemoveById(int id) throws SQLException;
-	
 
 	
 }

@@ -19,7 +19,7 @@ import top.gn.entity.Manager;
 
 /**  
  * @ClassName: ManagerDAOImpl  
- * @Description: TODO(这里用一句话描述这个类的作用)  
+ * @Description: 用户管理dao
  * @author BoyHu
  * @date 4 Apr 2018
  */

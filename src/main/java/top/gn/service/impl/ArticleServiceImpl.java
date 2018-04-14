@@ -21,8 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import top.gn.dao.ArticleInfoDAO;
 import top.gn.dao.ArticlerDAO;
-import top.gn.dao.impl.ArticleDAOImpl;
 import top.gn.entity.Article;
+import top.gn.entity.Manager;
 import top.gn.page.Page;
 import top.gn.service.ArticleService;
 
@@ -116,6 +116,17 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return null;
 	}
+	
+	@Override
+	public Article getArticleEditor(int id) {
+		try {
+			return this.articleDAOImpl.getArticleEditorMd(id);
+		} catch (SQLException e) {
+			System.err.println("ArticleServiceImpl.getArticleEditor() --- error");
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
 	public long getArticleCount() {
@@ -127,7 +138,26 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return 0L;
 	}
+	
+	@Override
+	public List<Article> getArticleByAuthor(Object managerobj){
+		Manager manger = null;
+		try {
+			manger = (Manager)managerobj;
+			return this.articleDAOImpl.getArticleByArthor(manger);
+		} catch (SQLException e) {
+			System.err.println(this+" Method:getArticleByAuthor error");
+			e.printStackTrace(); 
+		} catch (Exception e1) {
+			System.err.println(this+" Method:getArticleByAuthor error");
+			e1.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 
+	/*------------ 添加 -------------*/
 	
 	@Override
 	public long addArticle(Article article) {
@@ -163,7 +193,7 @@ public class ArticleServiceImpl implements ArticleService {
 		if(pototitle != null && !pototitle.isEmpty()) {
 			System.out.println("id:"+pototitle.getName());
 			System.out.println("type:"+ pototitle.getContentType());
-			String path = request.getSession().getServletContext().getRealPath("poto");;
+			String path = request.getServletContext().getRealPath("poto");
 			
 			String potoName = pototitle.getOriginalFilename();
 			
@@ -191,6 +221,18 @@ public class ArticleServiceImpl implements ArticleService {
 		return null;
 	}
 	
+	
+	public void deletePoto(String bgPath , HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("poto");
+		File bgPathFile = new File(path + File.separator + "type_mg" + File.separator + bgPath);
+		if(bgPathFile.exists()) {
+			bgPathFile.delete();
+			System.out.println("删除旧图片: " + bgPath);
+		}else {
+			System.out.println("没有找到旧文件");
+		}
+		
+	}
 	
 	
 	

@@ -162,7 +162,7 @@
 									${article.subtitleHTML}
 								</div>
 								<div class="con-footer">
-									<i class="iconfont">&#xe637;</i>&nbsp;  <fmt:formatDate value="${article.createDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+									<i class="iconfont">&#xe637;</i>&nbsp;  <fmt:formatDate value="${article.createDate}" pattern="yyyy-MM-dd HH:mm"></fmt:formatDate>
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<i class="iconfont">&#xe62a;</i>
 									<a href="#">${article.type}</a>

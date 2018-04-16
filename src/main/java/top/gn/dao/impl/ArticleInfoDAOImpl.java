@@ -38,7 +38,7 @@ public class ArticleInfoDAOImpl extends GenericDAOImpl<ArticleInfo> implements A
 	@Override
 	public int deleteArticleInfoByArticleId(int articleId) throws SQLException {
 		String sql = " DELETE FROM article_info WHERE article_id = ? ";
-		return doUpdate(sql, articleId); 
+		return doUpdate(sql, articleId);
 	}
 
 	@Override

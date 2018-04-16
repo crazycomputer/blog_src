@@ -31,7 +31,7 @@
 				<table class="layui-table">
 					<colgroup>
 						<col width="150">
-						<col width="100">
+						<col width="80">
 						<col width="100">
 						<col width="60">
 						<col width="60">
@@ -75,9 +75,14 @@
 											<a href="<%=path%>/manager-article/show-form?_i=${article.id}&flag=modify" class="layui-btn layui-btn-primary layui-btn-sm" title="编辑">
 												<i class="layui-icon">&#xe642;</i>
 											</a>
-											<button class="layui-btn layui-btn-primary layui-btn-sm" title="删除">
+											<button class="layui-btn layui-btn-primary layui-btn-sm destroy" name="${article.id}" title="删除">
 												<i class="layui-icon">&#xe640;</i>
 											</button>
+											<c:if test="${article.articleType == 2}">
+												<a href="<%=path%>/article/article-show/${article.id}" class="layui-btn layui-btn-primary layui-btn-sm" title="浏览">
+													<i class="layui-icon">&#xe705;</i>
+												</a>
+											</c:if>
 										</div>
 									</td>
 								</tr>
@@ -90,11 +95,48 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript" src="<%=path%>/js/jquery2.0.min.js"></script>
 <script type="text/javascript" src="<%=path%>/editor/layui/layui.js"></script>
 <script type="text/javascript">
 	//元素模块
 	layui.use('element', function() {
 		var element = layui.element;
 	});
+	var layer = null;
+	
+	//弹出窗
+	layui.use('layer', function(){
+		 layer = layui.layer;
+	});
+	
+	window.onload = function(){
+		$(".destroy").click(function(){
+			
+			if(!confirm("确定要删除文章")){
+				return;
+			}
+			
+			var o = $(this);
+			var id = this.name;
+			$.post("<%=path%>/manager-article/destroy-article"
+					, {flag:"remove",_i:id} 
+					, function(data){
+						//处理放回结果
+						resultRemove(data , o);
+					});
+		});		
+	}
+	
+	function resultRemove(data , o){
+		if(data){
+			layer.msg("删除成功!");
+			o.parent().parent().parent().remove();
+		}else{
+			layer.msg("删除失败!");
+		}
+	}
+	
+	
+	//
 </script>
 </html>

@@ -19,6 +19,8 @@ import top.gn.dao.impl.ArticleDAOImpl;
 import top.gn.dao.impl.ArticleInfoDAOImpl;
 import top.gn.entity.Article;
 import top.gn.page.Page;
+import top.gn.service.ArticleService;
+import top.gn.service.impl.ArticleServiceImpl;
 
 /**  
  * @ClassName: ArticleDAOImplTest  
@@ -32,10 +34,12 @@ public class ArticleDAOImplTest {
 	ApplicationContext ac;
 	ArticleDAOImpl articleDAOImpl ; 
 	ArticleInfoDAOImpl articleInfoDAOImpl;
+	ArticleService articleServiceImpl;
 	{
 		this.ac = new ClassPathXmlApplicationContext("springConfig.xml");
 		articleDAOImpl = this.ac.getBean(ArticleDAOImpl.class);
 		articleInfoDAOImpl = this.ac.getBean(ArticleInfoDAOImpl.class);
+		this.articleServiceImpl = this.ac.getBean(ArticleServiceImpl.class);
 	}
 
 	
@@ -98,6 +102,14 @@ public class ArticleDAOImplTest {
 	public void testArticleInfoDAOImpl() throws SQLException {
 		System.out.println(articleInfoDAOImpl.addArticleInfo(15));
 	}
+	
+	@Test
+	public void testdeleteArticleTransaction() throws SQLException {
+		
+		
+		System.out.println();
+	}
+	
 	
 
 }

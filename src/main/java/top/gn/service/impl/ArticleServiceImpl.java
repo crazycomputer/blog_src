@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import top.gn.dao.ArticleInfoDAO;
@@ -185,6 +186,31 @@ public class ArticleServiceImpl implements ArticleService {
 		return -1;
 	}
 	
+	@Transactional
+	@Override
+	public boolean deleteArticleTransaction(Article article , HttpServletRequest request) {
+		
+		try {
+			//由于有外键的约束 所以  先删除articleinfo当中的记录
+			this.articleInfoDAOImpl.deleteArticleInfoByArticleId(article.getId());
+			//其次在删除  文章的记录
+			this.articleDAOImpl.articleRemoveById(article.getId());
+			//以上二者均执行完成后  , 在将文章的的图片从本地删除
+			//需要判读article当中的bgPath是不是有值 
+			if( !("".equals(article.getBgPath())) ) {
+				deletePoto(article.getBgPath() , request);
+			}
+			return true;
+		} catch (SQLException e) {
+			System.out.println("ArticleServiceImpl.deleteArticleTransaction(int articleId)");
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+		
+	}
+	
 	
 	
 	@Override
@@ -221,7 +247,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return null;
 	}
 	
-	
+	/**
+	 * 删除图片 , 
+	 * @param bgPath  图片的名称 , 路径是poto/type_mg
+	 * @param request
+	 */
 	public void deletePoto(String bgPath , HttpServletRequest request) {
 		String path = request.getServletContext().getRealPath("poto");
 		File bgPathFile = new File(path + File.separator + "type_mg" + File.separator + bgPath);
@@ -231,7 +261,6 @@ public class ArticleServiceImpl implements ArticleService {
 		}else {
 			System.out.println("没有找到旧文件");
 		}
-		
 	}
 	
 	

@@ -87,12 +87,8 @@ public class ArticleManagerHandler {
 	public void attributeShowForm(@RequestParam(value = "_i" , 
 							required = false) Integer _i , Map<String, Object> map ,
 							@RequestParam(value = "flag" , required = false , defaultValue = "null") String flag ) {
-		if(_i == null) {
-			_i = 0;
-		}
-		
-		
-		if( !("null".equals(flag)) ) {
+
+		if( !("null".equals(flag)) && _i != null ) {
 			map.put("article",this.articleServiceImpl.getArticleEditor(_i));
 			System.out.println("attributeShowForm..run > 为编辑准备数据");
 		}
@@ -139,11 +135,13 @@ public class ArticleManagerHandler {
 	}
 	
 
+	//显示分类页面
 	@GetMapping("/type-tab")
 	public String showTypeManagerPage(){
 		return "/editor/type-manager";
 	}
 	
+	//显示草稿页面
 	@GetMapping("/draft")
 	public String showDraftManagerPage(HttpSession session){
 		System.out.println("showDraftManagerPage");
@@ -193,15 +191,20 @@ public class ArticleManagerHandler {
 			System.out.println("bgPath: "+bgPath);
 		}
 		
-		
-		
-		
 		//将文章的type设置为发布类型 , 默认为1 草稿类型
 		article.setArticleType(2);
 		this.articleServiceImpl.articleSubmit(article , bgPath);
 		return "redirect:../article/article-list";
 	}
 	
+	
+	
+	/*------ 删除 -------------*/
+	@ResponseBody
+	@PostMapping("/destroy-article")
+	public boolean deleteArticle(HttpServletRequest request , Article article) {
+		return articleServiceImpl.deleteArticleTransaction(article, request);
+	}
 	
 	
 	

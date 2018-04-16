@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import top.gn.entity.Article;
@@ -136,5 +137,16 @@ public interface ArticleService {
 	 * @return
 	 */
 	Article getArticleEditor(int id);
+
+	
+	/**
+	 * 该方法是一个事务的方法 , 需要执行的有两个数据库当中的删除 , 一个本地文件当中的删除 <br>
+	 * 根据article 当中的 文章id  , 先删除article_info当中的记录 , 在删除article当中的文章 , 最后删除本地文件当中的图片
+	 * 
+	 * @param article 该article是需要根据article.id: 进行查询 可以借助@ModelAttribute 修饰的方法 , 删除时先查询
+	 * @param request 
+	 * @returns 返回boolean 表示该操作执行成功 , false 表示该操作执行失败
+	 */
+	boolean deleteArticleTransaction(Article article, HttpServletRequest request);
 	
 }

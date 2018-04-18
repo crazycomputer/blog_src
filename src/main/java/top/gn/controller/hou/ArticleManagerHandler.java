@@ -8,6 +8,7 @@
 package top.gn.controller.hou;
 
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import top.gn.entity.Article;
+import top.gn.entity.BlogChildType;
 import top.gn.entity.BlogData;
 import top.gn.service.ArticleService;
 import top.gn.service.ChildTypeService;
@@ -133,12 +135,24 @@ public class ArticleManagerHandler {
 		map.put("blogData",blogData);
 		return "/editor/article-manager";
 	}
-	
 
-	//显示分类页面
+	
+	/**
+	 * 显示分类管理页面和查询父分类
+	 * @param map
+	 * @return
+	 */
 	@GetMapping("/type-tab")
-	public String showTypeManagerPage(){
+	public String showTypeManagerPage(Map<String, Object> map){
+		map.put("parentTypes", this.parentTypeServiceImpl.getParentTypeAll());
 		return "/editor/type-manager";
+	}
+	
+	@ResponseBody
+	@GetMapping("/childs-ParentName")
+	public List<BlogChildType> getChildTypeByParentName(@RequestParam(value = "parentName" , 
+				required = false , defaultValue = "技术") String parentName ){
+		return this.childTypeServiceImpl.getChildTypeByParentName(parentName);
 	}
 	
 	//显示草稿页面
@@ -196,6 +210,16 @@ public class ArticleManagerHandler {
 		this.articleServiceImpl.articleSubmit(article , bgPath);
 		return "redirect:../article/article-list";
 	}
+	
+	@ResponseBody
+	@PostMapping("/autoSave")
+	public int autoSave(Article article) {
+		article.setArticleType(1);
+		System.out.println("自动保存:"+ "\n" + article);
+		return this.articleServiceImpl.articleSubmit(article , null);
+	}
+	
+	
 	
 	
 	

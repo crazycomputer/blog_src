@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%
-	String path = request.getContextPath() + "/";
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path;
+	String path = request.getContextPath();
+	String basePath = path + "/";
 	%>
     
 <!DOCTYPE html>
@@ -16,13 +15,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="css/loading.css" />
-<link rel="stylesheet" href="css/ioc.css" />
-<link rel="stylesheet" href="css/blog-top-index.css" />
-<link rel="stylesheet" href="css/right.css" />
-<link rel="stylesheet" type="text/css" href="css/editormd.preview.min.css">
-<link rel="stylesheet" type="text/css" href="css/editormd-2.min.css">
-	    
+<link rel="stylesheet" href="<%=path%>/css/loading.css" />
+<link rel="stylesheet" href="<%=path%>/css/ioc.css" />
+<link rel="stylesheet" href="<%=path%>/css/blog-top-index.css" />
+<link rel="stylesheet" href="<%=path%>/css/right.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd.preview.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd-2.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/bottom-css.css">
+
 	    <style type="text/css">
 	    	*{margin:0; padding:0;}
 	    	
@@ -82,8 +82,8 @@
 		<jsp:include page="./blog_component/blog-bottom.jsp"></jsp:include>
 	</body>
 	
-	<script src="js/jquery2.0.min.js"></script>
-	<script type="text/javascript" src="js/loading.js"></script>
+	<script type="text/javascript"  src="<%=path%>/js/jquery2.0.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/loading.js"></script>
 	<script type="text/javascript">
 		$(".markdown-body").attr("style","padding:0px");
 	</script>

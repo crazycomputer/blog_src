@@ -64,7 +64,9 @@
 			//设置 .main-box-articleList的高度和 浏览器窗口一样大
 			//$(".main-box-articleList").height(berowseHeight);
 			//alert(berowseHeight);
-			//------------
+			//------------  
+			//计算body的高度为刘浏览器的总高度
+			//$("body").eq(0).height($(document).height());
 			var typeHead = document.getElementsByClassName("type_head")[0];
 			var main =  document.getElementById("main-box");
 			var top = typeHead.clientHeight;	
@@ -72,10 +74,12 @@
 			type_articleallWidth();
 		}
 		
+		var arrH = [];
 		
 		function change() {
+			
 			var t = 0;
-			var arrH = [];
+			arrH = [];
 			for(var i=0; i< articles.length; i++){
 				var j = i%count;
 				if(arrH.length == count) {
@@ -91,12 +95,22 @@
 				}
 				
 			}
+			
+			var maxIndex = findMax(arrH);
+			$(".main-box-articleList").eq(0).height(arrH[maxIndex]+40);
 		}
 		
 		function findMin(arr) {
 			var m = 0;
 			for(var i = 0; i < arr.length; i++) {
 				m = Math.min(arr[m] , arr[i]) == arr[m] ? m : i;
+			}
+			return m;
+		}
+		function findMax(arr) {
+			var m = 0;
+			for(var i = 0; i < arr.length; i++) {
+				m = Math.max(arr[m] , arr[i]) == arr[m] ? m : i;
 			}
 			return m;
 		}

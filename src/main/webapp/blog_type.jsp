@@ -3,9 +3,8 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%
-	String path = request.getContextPath() + "/";
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path;
+	String path = request.getContextPath();
+	String basePath = path + "/";
 	%>
     
 <!DOCTYPE html>
@@ -16,10 +15,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/editormd.preview.min.css">
-<link rel="stylesheet" type="text/css" href="css/editormd-2.min.css">
-<link rel="stylesheet" href="css/ioc.css" />
-<link rel="stylesheet" type="text/css" href="./editor/layui/css/layui.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd.preview.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd-2.min.css">
+<link rel="stylesheet" href="<%=path%>/css/ioc.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/editor/layui/css/layui.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/bottom-css.css">
 <style type="text/css">
 			/* 类型头部: S */
 			.type_head{
@@ -168,6 +168,14 @@
 			}
 			/* 文章  E */
 			
+			/* 底部  S */
+			.blog-index-footer {
+				height: 200px;
+				background: #ddd;
+			}
+			
+			/* 底部  E */
+			
 			@media only screen and (max-width: 450px){
 			    html {font-size: 16px;}	
 			    .type_articleall img{
@@ -227,7 +235,7 @@
 				<c:forEach items="${requestScope.blogData.articlesList}" var="article">
 					<div class="type_articleall layui-anim layui-anim-fadein">
 						<c:if test="${not empty article.bgPath}">
-							<img alt="" src="./poto/type_mg/${article.bgPath}">
+							<img alt="图片" title="${article.title}" src="<%=path%>/poto/type_mg/${article.bgPath}">
 						</c:if>
 						<div class="type_article">
 							<h3 class="type_article_title"><a href="./article/article-show/${article.id}">${article.title}</a></h3>
@@ -245,12 +253,10 @@
 					</div>
 				</c:forEach>
 			</section>
+			<jsp:include page="./blog_component/blog-bottom.jsp"></jsp:include>
 		</div>
 		
-	<script type="text/javascript" src="js/jquery2.0.min.js"></script>	
-	<script type="text/javascript" src="js/blog-type.js"></script>
-	
-	<script type="text/javascript">
-		
-	</script>
+</body>
+	<script type="text/javascript" src="<%=path%>/js/jquery2.0.min.js"></script>	
+	<script type="text/javascript" src="<%=path%>/js/blog-type.js"></script>
 </html>

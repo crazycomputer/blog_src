@@ -3,24 +3,24 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%
-	String path = request.getContextPath() + "/";
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path;
+	String path = request.getContextPath();
+	String basePath = path + "/";
 	%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>Insert title here</title>
+<title>文章</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/ioc.css" />
-<link rel="stylesheet" href="css/loading.css" />
-<link rel="stylesheet" href="css/blog-top-index.css" />
-<link rel="stylesheet" type="text/css" href="css/editormd.preview.min.css">
-<link rel="stylesheet" type="text/css" href="css/editormd-2.min.css">
+<link rel="stylesheet" href="<%=path%>/css/ioc.css" />
+<link rel="stylesheet" href="<%=path%>/css/loading.css" />
+<link rel="stylesheet" href="<%=path%>/css/blog-top-index.css" />
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd.preview.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/editormd-2.min.css">
+<link rel="stylesheet" type="text/css" href="<%=path%>/css/bottom-css.css">
 		<style type="text/css">
 			*{margin: 0; padding: 0;}
 			/* main  S */
@@ -132,8 +132,8 @@
 			/* 文章 部分 E */
 		</style>
 
-		<link rel="stylesheet" type="text/css" href="css/right.css" />
-		<link rel="stylesheet" type="text/css" href="css/blog-index-css.css"/>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/right.css" />
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/blog-index-css.css"/>
 </head>
 <body style="background: #f5f8f9;">
 
@@ -201,8 +201,8 @@
 
 <jsp:include page="./blog_component/blog-bottom.jsp"></jsp:include>
 </body>
-    <script src="js/jquery2.0.min.js"></script>
-	<script type="text/javascript" src="js/loading.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/jquery2.0.min.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/loading.js"></script>
 	<script type="text/javascript">
 	
 	

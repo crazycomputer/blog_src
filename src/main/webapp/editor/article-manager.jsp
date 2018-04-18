@@ -79,7 +79,7 @@
 												<i class="layui-icon">&#xe640;</i>
 											</button>
 											<c:if test="${article.articleType == 2}">
-												<a href="<%=path%>/article/article-show/${article.id}" class="layui-btn layui-btn-primary layui-btn-sm" title="浏览">
+												<a href="<%=path%>/article/article-show/${article.id}" target="_blank" class="layui-btn layui-btn-primary layui-btn-sm" title="浏览">
 													<i class="layui-icon">&#xe705;</i>
 												</a>
 											</c:if>

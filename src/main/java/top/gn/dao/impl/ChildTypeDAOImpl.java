@@ -37,4 +37,10 @@ public class ChildTypeDAOImpl extends GenericDAOImpl<BlogChildType> implements C
 		return doGetAll(sql, rowMapper);
 	}
 
+	@Override
+	public List<BlogChildType> getChildTypeByParentName(String parentName) throws SQLException {
+		String sql = " SELECT id , name , parent_type as parentType FROM blog_child_type WHERE parent_type = ? ";
+		return doGetAll(sql, rowMapper, parentName);
+	}
+
 }

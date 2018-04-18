@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <%
-	String path = request.getContextPath() + "/";
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path+"editor/";
+	String path = request.getContextPath();
+	String basePath = path+"/editor/";
 	%>
 <!DOCTYPE html>
 <html>
@@ -135,9 +134,6 @@ $(function() {
 	layui.use("form",function(){
 			var form = layui.form;
 	});
-
-	
-	//$("#upload-article-bg").
 	
 	
 	editormd("test-editormd", {
@@ -157,8 +153,6 @@ $(function() {
 	});
 	
 	$(".layui-article-file").change(function(e){
-		console.log(e);
-		console.log(e.files);
 		var file = e.target.files[0];
 		if(/^image\/\w{1,5}$/.test(file.type)){
 			$(".layui-article-fileName").html(e.target.value);
@@ -169,12 +163,15 @@ $(function() {
 		
 		}
 	});
-    
+	
+	if("${param.flag}" == "insert"){
+		setTimeout(insertArticle , 10000);
+	}
+	setInterval(autoSave , 20000);
 });
 
 var article = {
-		id:""
-		,title:""
+		title:""
 		,parentType:""
 		,type:""
 		,subtitleHTML:""	
@@ -182,6 +179,7 @@ var article = {
 		,contentMd:""
 		,author:""
 };
+var mydata = {index:0};
 
 var layer = null ;
 
@@ -211,13 +209,30 @@ function insertArticle() {
 	//初始化数据
 	initData();
 	//发送ajax请求
-	$.post("../manager-article/add-article" , article , function(data){
+	$.post("<%=path%>/manager-article/add-article" , article , function(data){
 		$("#addarcle-id").val(data);
 	});
 }
-
-if("${param.flag}" == "insert"){
-	setTimeout(insertArticle , 10000);
+//flag不能为null  需要有id 参数当中
+function autoSave() {
+	//初始化数据
+	initData();
+	var id = $("#addarcle-id").val(); //获取id
+	mydata.index++;
+	//保存成功返回 大于零的数 , 若为零或小于零则是没有保存未成功
+	$.post("<%=path%>/manager-article/autoSave?_i=" + id + "&flag=updata" , article , function(data){
+		if(data > 0) {
+			layer.msg("30秒自动保存次数:"+mydata.index,{
+				offset: 'r',
+				offset: 'b'
+			});			
+		}else{
+			layer.msg("保存失败",{
+				offset: 'r',
+				offset: 'b'
+			});	
+		}
+	});
 }
 
 

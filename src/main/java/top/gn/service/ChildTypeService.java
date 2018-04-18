@@ -21,6 +21,8 @@ import top.gn.entity.BlogChildType;
 public interface ChildTypeService {
 
 	List<BlogChildType> getChildTypeAll();
+
+	List<BlogChildType> getChildTypeByParentName(String parentName);
 	
 	
 	

@@ -46,4 +46,17 @@ public class ChildTypeServiceImpl implements ChildTypeService {
 		return null;
 	}
 
+	@Override
+	public List<BlogChildType> getChildTypeByParentName(String parentName) {
+		try {
+			return this.childTypeDAOImpl.getChildTypeByParentName(parentName);
+		} catch (SQLException e) {
+			System.out.println("error---- ::ChildTypeServiceImpl.getChildTypeByParentName() ");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+
 }

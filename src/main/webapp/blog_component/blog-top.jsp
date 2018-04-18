@@ -9,7 +9,7 @@
 			<li><i class="iconfont nva-ico">&#xe619;</i><a href="./article/article-list">文章</a></li>
 			<li><i class="iconfont nva-ico">&#xe608;</i><a href="./article/article-type" target="_blink">分类</a></li>
 			<li><i class="iconfont nva-ico">&#xe61e;</i><a href="#">关于</a></li>
-			<li><i class="iconfont nva-ico"></i><a href="./author/ccc/513" target="_blink">登录</a></li>
+			<li><i class="iconfont nva-ico"></i><a href="./author/ccc/513" target="_blank">登录</a></li>
 		</ul>
 	</nav>
 	<div class="hean-background">

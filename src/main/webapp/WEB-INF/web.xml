@@ -26,7 +26,7 @@
 	<!-- 配置session的失效时间  S -->
 	<session-config>
 		<!-- 30分钟 -->
-		<session-timeout>30</session-timeout>
+		<session-timeout>60</session-timeout>
 	</session-config>
 	
 	
